@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/greenfield-apollo/greenfield-apollo#readme",
   "dependencies": {
-    "bcrypt": "^0.8.5",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.0",
+    "cors": "^2.7.1",
     "express": "^4.13.3",
     "express-error-handler": "^1.0.1",
     "jsonwebtoken": "^5.0.5",

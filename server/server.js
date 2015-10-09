@@ -9,8 +9,9 @@ var passport = require('passport');
 var JwtStrategy = require('passport-jwt').Strategy;
 var config = require('./config/config');
 var strategies = require('./config/strategies');
-
+var cors = require('cors');
 // configuration ===========================================
+app.use(cors());
 app.set('port', process.env.PORT || config.port);
 
 var dbURI = process.env.MONGOLAB_URI || config.localdb;
