@@ -16,11 +16,11 @@ angular.module('app', [
   function ($routeProvider, $httpProvider, $authProvider) {
     $routeProvider
       .when('/signin', {
-        templateUrl: 'app/auth/signin.html',
+        templateUrl: 'js/auth/signin.html',
         controller: 'AuthController',
       })
       .when('/signup', {
-        templateUrl: 'app/auth/signup.html',
+        templateUrl: 'js/auth/signup.html',
         controller: 'AuthController',
       })
       .when('/signout', {
@@ -28,17 +28,17 @@ angular.module('app', [
         controller: 'AuthController',
       })
       .when('/dashboard', {
-        templateUrl: 'app/dashboard/dashboard.html',
+        templateUrl: 'js/dashboard/dashboard.html',
         controller: 'DashboardController',
         authenticate: true
       })
       .when('/create', {
-        templateUrl: 'app/create/create.html',
+        templateUrl: 'js/create/create.html',
         controller: 'CreateController',
         authenticate: true
       })
       .when('/edit', {
-        templateUrl: 'app/edit/edit.html',
+        templateUrl: 'js/edit/edit.html',
         controller: 'EditController',
         authenticate: true
       })
