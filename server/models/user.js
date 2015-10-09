@@ -1,7 +1,7 @@
 // modules =================================================
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var HabitSchema = require('./habit');
 
 // schema ==================================================
@@ -47,10 +47,10 @@ UserSchema.pre('save', function(next) {
   if (!user.isModified('password')) {
     return next();
   } else {
-    bcrypt.genSalt(function(err, salt) {
+    bcrypt.genSalt(10, function(err, salt) {
       if (err) return next(err);
 
-      bcrypt.hash(user.password, salt, function(err, hash) {
+      bcrypt.hash(user.password, salt, null, function(err, hash) {
         if (err) return next(err);
 
         user.password = hash;

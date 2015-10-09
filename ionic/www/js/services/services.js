@@ -70,6 +70,9 @@ angular.module('app.services', [])
 
 .factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize',
   function ($http, $location, $window, $auth, $sanitize) {
+
+    var urlPrefix = 'http://localhost:8080';
+
     var signin = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
@@ -82,7 +85,7 @@ angular.module('app.services', [])
     var signup = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
-      return $http.post('/authenticate/signup', user)
+      return $http.post(urlPrefix + '/authenticate/signup', user)
         .then(function (resp) {
           return resp.data.token;
         });
