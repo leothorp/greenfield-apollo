@@ -2,6 +2,7 @@
 *.log
 
 node_modules/
+ionic/www/lib/
 
 client/lib/
 client/dist/
