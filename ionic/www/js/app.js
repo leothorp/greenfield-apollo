@@ -9,9 +9,9 @@ angular.module('app', [
   'ngSanitize',
   'gridshore.c3js.chart',
   'satellizer',
-  'cgNotify'
+  'cgNotify',
+  'ionic'
 ])
-
 .config(['$routeProvider', '$httpProvider', '$authProvider',
   function ($routeProvider, $httpProvider, $authProvider) {
     $routeProvider
@@ -45,6 +45,44 @@ angular.module('app', [
       .otherwise({
         redirectTo: '/dashboard'
       });
+// .config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$authProvider',
+//   function ($stateProvider, $urlRouterProvider, $httpProvider, $authProvider) {
+//     $urlRouterProvider.otherwise('/dashboard');
+//     $stateProvider
+//       .state('signin', {
+//         url: '/signin',
+//         templateUrl: 'js/auth/signin.html',
+//         controller: 'AuthController',
+//       })
+//       .state('signup', {
+//         url: '/signup',
+//         templateUrl: 'js/auth/signup.html',
+//         controller: 'AuthController',
+//       })
+//       .state('signout', {
+//         url: '/signout',
+//         template: '',
+//         controller: 'AuthController',
+//       })
+//       .state('dashboard', {
+//         url: '/dashboard',
+//         templateUrl: 'js/dashboard/dashboard.html',
+//         controller: 'DashboardController',
+//         authenticate: true
+//       })
+//       .state('create', {
+//         url: '/create',
+//         templateUrl: 'js/create/create.html',
+//         controller: 'CreateController',
+//         authenticate: true
+//       })
+//       .state('edit', {
+//         url: '/edit',
+//         templateUrl: 'js/edit/edit.html',
+//         controller: 'EditController',
+//         authenticate: true
+//       });
+     
 
     $authProvider.loginUrl = '/signin';
     $authProvider.signupUrl = '/signup';

@@ -70,8 +70,8 @@ angular.module('app.services', [])
   }
 ])
 
-.factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize', 'hostUrl',
-  function ($http, $location, $window, $auth, $sanitize, hostUrl) {
+.factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize', 'hostUrl', '$state',
+  function ($http, $location, $window, $auth, $sanitize, hostUrl, $state) {
 
 
     //var urlPrefix = 'http://192.168.0.7:8080';
@@ -100,8 +100,11 @@ angular.module('app.services', [])
     };
 
     var signout = function () {
+      console.log('signing out...');
       $auth.logout()
         .then(function() {
+          console.log('in promise');
+          //$state.go('signin');
           $location.path(hostUrl + '/signin');
         });
     };

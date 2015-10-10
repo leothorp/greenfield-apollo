@@ -1,7 +1,15 @@
-angular.module('app.create', [])
+angular.module('app.create', ['ionic'])
 
-.controller('CreateController', ['$rootScope', '$scope', '$location', 'Habits',
-  function($rootScope, $scope, $location, Habits) {
+.controller('CreateController', ['$rootScope', '$scope', '$location','$ionicModal', 'Habits', 
+  function($rootScope, $scope, $location, $ionicModal, Habits) {
+
+    // $ionicModal.fromTemplateUrl('js/create/create.html', function(modal) {
+    //   $scope.habitModal = modal;
+    //   $scope.habitModal.show();
+    // }, {
+    //   scope: $scope,
+    //   animation: 'slide-in-up'
+    // });
     $rootScope.showNav = true;
     $scope.habit = {};
     Habits.getHabits()

@@ -14,35 +14,50 @@
    <!--  <link rel="stylesheet" type="text/css" href="dist/style.min.css"> -->
   </head>
   <body ng-app="app">
-    <nav ng-if="showNav" class="navbar navbar-default">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#/dashboard">Habit Trainer</a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="#/dashboard">Dashboard</a></li>
-            <li><a href="#/create">Create Habit</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#/signout">Logout</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <a href="#/signout">Logout</a>
+    <ion-side-menus>
+      <ion-side-menu-content>
+<!--         <ion-nav-bar class="bar-stable nav-title-slide-ios7">
+          <ion-nav-back-button class="button-clear"><i class="icon ion-ios7-arrow-back"></i> Back</ion-nav-back-button>
+        </ion-nav-bar> -->
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+        <ng-view animation="slide-left-right"></ng-view>
+      </ion-side-menu-content>
+
+      <ion-side-menu side="left">
+        <header class="bar bar-header bar-stable">
+          <h1 class="title">Options</h1>
+        </header>
+        <!-- class="has-header" -->
+        <ion-content class="has-header">
+          <ion-list>
+            <ion-item menu-close href="#/signout">
+              Logout
+            </ion-item>
+            <ion-item menu-close href="#/create">
+              Create Habit
+            </ion-item>
+            <ion-item menu-close href="#/dashboard">
+              Dashboard
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-side-menu>
+    </ion-side-menus>
+    
+<!--     <a href="#/signout">Logout</a>
+    <a href="#/create">Create Habit</a>
+    <a href="#/dashboard">Dashboard</a> -->
+<!--     <ng-view></ng-view> -->
+<!--     <a ui-sref="signout">Logout</a>
+    <a ui-sref="create">Create Habit</a>
+    <a ui-sref="dashboard">Dashboard</a> -->
+<!--     <ion-nav-view></ion-nav-view> -->
 
 <!--     <div ng-show="$messageTemplate" class="cg-notify-message-template"> -->
 
-<!-- the ng-view directive is where our templates will be loaded into when navigated to -->
-
-    <div ng-view></div>
+<!-- the ng-view directive is where our templates will be loaded into when navigated to -->   
+  <!--   <div ng-view></div> -->
+    
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
