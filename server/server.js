@@ -12,9 +12,7 @@ var strategies = require('./config/strategies');
 var cors = require('cors');
 // configuration ===========================================
 app.use(cors());
-app.use(function() {
-  console.log('request received');
-})
+
 app.set('port', process.env.PORT || config.port);
 
 var dbURI = process.env.MONGOLAB_URI || config.localdb;

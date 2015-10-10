@@ -71,8 +71,8 @@ angular.module('app.services', [])
 .factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize',
   function ($http, $location, $window, $auth, $sanitize) {
 
-    var urlPrefix = 'http://habit-trainer.herokuapp.com';
-    //var urlPrefix = 'http://localhost:8080';
+    //var urlPrefix = 'http://habit-trainer.herokuapp.com';
+    var urlPrefix = 'http://localhost:8080';
     //var urlPrefix = 'http://192.168.0.7:8080';
     var signin = function (user) {
       user.username = $sanitize(user.username);
@@ -86,6 +86,7 @@ angular.module('app.services', [])
     var signup = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
+      console.log('signing up...');
       return $http.post(urlPrefix + '/authenticate/signup', user)
         .then(function (resp) {
           return resp.data.token;
