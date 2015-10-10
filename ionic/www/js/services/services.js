@@ -1,7 +1,9 @@
 angular.module('app.services', [])
 
-.factory('Habits', ['$http', '$sanitize', '$interpolate', 'notify',
-  function($http, $sanitize, $interpolate, notify) {
+.value('hostUrl', 'http://localhost:8080')
+
+.factory('Habits', ['$http', '$sanitize', '$interpolate', 'notify', 'hostUrl',
+  function($http, $sanitize, $interpolate, notify, hostUrl) {
 
     var _habit = {};
     var service = {};
@@ -9,7 +11,7 @@ angular.module('app.services', [])
     service.getHabits = function() {
       return $http({
         method: 'GET',
-        url: '/api/users/habits'
+        url: hostUrl + '/api/users/habits'
       })
       .then(function(resp) {
         return resp.data.habits;
@@ -20,7 +22,7 @@ angular.module('app.services', [])
       habit.habitName = $sanitize(habit.habitName);
       return $http({
         method: 'POST',
-        url: '/api/users/habits',
+        url: hostUrl + '/api/users/habits',
         data: habit
       });
     };
@@ -38,7 +40,7 @@ angular.module('app.services', [])
     service.updateHabit = function(habit) {
       return $http({
         method: 'PUT',
-        url: '/api/users/habits/' + habit._id,
+        url: hostUrl + '/api/users/habits/' + habit._id,
         data: habit
       });
     };
@@ -58,7 +60,7 @@ angular.module('app.services', [])
       notify('Great job completing your habit!');
       return $http({
         method: 'POST',
-        url: '/api/records/' + habit._id,
+        url: hostUrl + '/api/records/' + habit._id,
         data: habit
       });
     };
@@ -68,16 +70,16 @@ angular.module('app.services', [])
   }
 ])
 
-.factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize',
-  function ($http, $location, $window, $auth, $sanitize) {
+.factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize', 'hostUrl',
+  function ($http, $location, $window, $auth, $sanitize, hostUrl) {
 
-    //var urlPrefix = 'http://habit-trainer.herokuapp.com';
-    var urlPrefix = 'http://localhost:8080';
+
     //var urlPrefix = 'http://192.168.0.7:8080';
     var signin = function (user) {
+      console.log(hostUrl);
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
-      return $http.post(urlPrefix + '/authenticate/signin', user)
+      return $http.post(hostUrl + '/authenticate/signin', user)
         .then(function (resp) {
           return resp.data.token;
         });
@@ -86,8 +88,8 @@ angular.module('app.services', [])
     var signup = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
-      console.log('signing up...');
-      return $http.post(urlPrefix + '/authenticate/signup', user)
+      return $http.post(hostUrl + '/authenticate/signup', user)
+
         .then(function (resp) {
           return resp.data.token;
         });
@@ -100,7 +102,7 @@ angular.module('app.services', [])
     var signout = function () {
       $auth.logout()
         .then(function() {
-          $location.path(urlPrefix + '/signin');
+          $location.path(hostUrl + '/signin');
         });
     };
 
