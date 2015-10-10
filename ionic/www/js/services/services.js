@@ -71,12 +71,13 @@ angular.module('app.services', [])
 .factory('Auth', ['$http', '$location', '$window', '$auth', '$sanitize',
   function ($http, $location, $window, $auth, $sanitize) {
 
-    var urlPrefix = 'http://localhost:8080';
-
+    var urlPrefix = 'http://habit-trainer.herokuapp.com';
+    //var urlPrefix = 'http://localhost:8080';
+    //var urlPrefix = 'http://192.168.0.7:8080';
     var signin = function (user) {
       user.username = $sanitize(user.username);
       user.password = $sanitize(user.password);
-      return $http.post('/authenticate/signin', user)
+      return $http.post(urlPrefix + '/authenticate/signin', user)
         .then(function (resp) {
           return resp.data.token;
         });
@@ -98,7 +99,7 @@ angular.module('app.services', [])
     var signout = function () {
       $auth.logout()
         .then(function() {
-          $location.path('/signin');
+          $location.path(urlPrefix + '/signin');
         });
     };
 
