@@ -1,8 +1,40 @@
-<div class="container">
-<!--   <button type="button" class="btn btn-success" ng-click="toggleSampleData()">Toggle Sample Data</button>
-  <br><br>
- -->  <div class="habits info">
-    <table class="table table-striped table-bordered table-hover">
+<div class="dashboardContainer">
+  <!--  <button type="button" class="btn btn-success" ng-click="toggleSampleData()">Toggle Sample Data</button>
+  <br><br> -->
+   <div class="habits info">
+      <div class="row">
+        <div class="col">Check In</div> 
+        <div class="col">Habit</div> 
+        <div class="col">Reminder</div>
+        <div class="col">Due</div>  
+        <div class="col">Edit</div>  
+      <!--   <div class="col">Due</div>  
+        <div class="col">Current Streak</div>  
+        <div class="col">Record Streak</div>  
+        <div class="col">Edit Habit</div>  --> 
+      </div> 
+      <div class="row habit" ng-repeat="habit in habits | filter:{active:true}"> 
+        <div class="col">
+          <button ng-if="buttonState(habit, 'pending')" type="button" class="btn btn-success" ng-click="checkinHabit(habit)">Did-it!</button>
+          <button ng-if="buttonState(habit, 'completed')" type="button" class="btn btn-info btn-primary disabled">Done</button>
+          <button ng-if="buttonState(habit, 'failed')" type="button" class="btn btn-danger disabled">Failed</button>
+        </div>  
+
+        <div class="col">
+          {{ habit.habitName }}
+        </div>
+        <div class="col">
+          {{ habit.reminderTime | date:'shortTime' }}
+        </div>
+        <div class="col">
+          {{ habit.dueTime | date:'shortTime' }}
+        </div>
+        <div class="col">
+          <!-- ng-if for testing only (temporary) -->
+          <button ng-if="!sample" type="button" class="btn btn-primary" ng-click="editHabit(habit)">Edit</button>
+        </div>
+      </div>  
+  <!--   <table class="table table-striped table-bordered table-hover">
       <tr>
         <th>
           Daily Checkin
@@ -48,13 +80,13 @@
           {{ habit.streakRecord }}
         </td>
         <td>
-          <!-- ng-if for testing only (temporary) -->
-          <button ng-if="!sample" type="button" class="btn btn-primary" ng-click="editHabit(habit)">Edit</button>
+         
+         <button ng-if="!sample" type="button" class="btn btn-primary" ng-click="editHabit(habit)">Edit</button>
         </td>
       </tr>
-    </table>
+    </table> 
   </div>
-  <div class="row">
+   <div class="row">
     <div class="col-md-2">
       <h2>Habit Score</h2>
     </div>
@@ -85,11 +117,11 @@
       <div class="graph" id="current-streak">
         <div ng-if="habitStreaks.length">
           <d3-bars data="habitStreaks"></d3-bars>
-        </div>
-        <!-- Placeholder streak data -->
-        <h3 ng-if="!habitStreaks.length">No streak data</h3>
+        </div> -->
+       <!-- Placeholder streak data-->
+<!--        <h3 ng-if="!habitStreaks.length">No streak data</h3>
 
       </div>
     </div>
-  </div>
+  </div>  --> 
 </div>
