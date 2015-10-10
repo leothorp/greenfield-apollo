@@ -12,8 +12,9 @@ var strategies = require('./config/strategies');
 var cors = require('cors');
 // configuration ===========================================
 app.use(cors());
-app.use(function() {
+app.use(function(req, res, next) {
   console.log('request received');
+  next(); 
 })
 app.set('port', process.env.PORT || config.port);
 
