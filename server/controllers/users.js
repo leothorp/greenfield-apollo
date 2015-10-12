@@ -219,8 +219,23 @@ module.exports = {
       });
       res.json(userData);
     };
-
     User.find({}, sendStats);
+  },
 
-  }
+  addFakeUserData: function(req, res, next) {
+    console.log('req.body: ', req.body);
+    User.findOne({username: req.body.username.toLowerCase()}, function(err, user) {
+      user.recentStats.push({
+        theDate: req.body.recentStats[0].theDate,
+        difficultyPointsEarned: req.body.recentStats[0].difficultyPointsEarned,
+        possiblePointsThisDay: req.body.recentStats[0].possiblePointsThisDay
+      });
+      user.save(function(err) {
+        if (err) {
+          console.log('error saving fake user: ', err);
+        }
+        res.json({message: 'fake user data added to user ' + user});
+      });
+    });
+  }  
 };
