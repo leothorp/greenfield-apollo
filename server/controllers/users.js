@@ -54,7 +54,7 @@ module.exports = {
       dueTime: req.body.dueTime,
       difficulty: req.body.difficulty || 1
     };
-
+    console.log('DIFF : ', habit.difficulty);
     if (req.user.habitCount >= req.user.habitLimit) {
       return next(utils.err('Habit limit reached.'));
     } else if (!utils.checkProperty(habit, next)) {
