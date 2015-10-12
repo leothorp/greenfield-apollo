@@ -27,6 +27,16 @@ angular.module('app.services', [])
       });
     };
 
+    service.getStats = function(){
+      return $http({
+        method: 'GET',
+        url: hostUrl + '/api/users/allstats',
+      })
+      .then(function(resp){
+        return resp.data.habits; 
+      })
+    }
+
     service.setEdit = function(habit) {
       _habit = habit;
       _habit.reminderTime = new Date(_habit.reminderTime);
