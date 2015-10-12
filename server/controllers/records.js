@@ -26,7 +26,7 @@ module.exports = {
       if (err) return next(err);
 
       console.log('Habit ' + req.params.id + ' checked in.');
-      res.json({message: 'Checked in successfully.'});
+      res.json({message: 'Checked in successfully.', newPercentage: req.user.successPercentage});
     });
   }
 };

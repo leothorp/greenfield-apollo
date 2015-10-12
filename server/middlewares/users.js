@@ -24,4 +24,11 @@ module.exports = function (router) {
   // deactivates habit or edit reminder time / due time
   router.put('/habits/:id', userController.verifyHabit,
     userController.editHabit);
+  // GET: /api/users/allstats
+  //get data of diff points completed/possible for up to past 90 days for all users
+  router.get('/allstats', userController.getAllStats);
+
+  // POST: /api/users/fakeuserdata
+  //for testing/demoing; add a user with dummy data
+  router.post('/fakeuserdata', userController.addFakeUserData);
 };

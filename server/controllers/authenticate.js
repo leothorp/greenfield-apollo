@@ -50,10 +50,17 @@ module.exports = {
           return next(utils.err('Username already taken.'));
         } else {
           var newUser = new User(userData);
-
+          //add empty first day
+          var firstDay = { 
+            theDate: new Date(),     
+            difficultyPointsEarned : 0,
+            possiblePointsThisDay : 0 
+          };
+          newUser.recentStats.push(firstDay);
+          newUser.successPercentage = '0%';
           newUser.save(function(err) {
             if (err) return next(err);
-
+            console.log(newUser); 
             console.log('New user ' + newUser.username + ' created.');
 
             var token = utils.issueToken(newUser.username, 'JWT');

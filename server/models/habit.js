@@ -24,6 +24,10 @@ var HabitSchema = new Schema({
     default: true
   },
 
+  difficulty: {
+    type: Number
+  },
+
   // only used for GET /api/users/habits
   status: {
     type: String

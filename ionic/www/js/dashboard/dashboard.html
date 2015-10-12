@@ -4,7 +4,8 @@
    <div class="habits info">
       <div class="row">
         <div class="col">Check In</div> 
-        <div class="col">Habit</div> 
+        <div class="col">Habit</div>
+        <div class="col">Difficulty</div>  
         <div class="col">Reminder</div>
         <div class="col">Due</div>  
         <div class="col">Edit</div>  
@@ -15,13 +16,16 @@
       </div> 
       <div class="row habit" ng-repeat="habit in habits | filter:{active:true}"> 
         <div class="col">
-          <button ng-if="buttonState(habit, 'pending')" type="button" class="btn btn-success" ng-click="checkinHabit(habit)">Did-it!</button>
+          <button ng-if="buttonState(habit, 'pending')" type="button" class="btn btn-success" ng-click="checkinHabit(habit)">Did it!</button>
           <button ng-if="buttonState(habit, 'completed')" type="button" class="btn btn-info btn-primary disabled">Done</button>
           <button ng-if="buttonState(habit, 'failed')" type="button" class="btn btn-danger disabled">Failed</button>
         </div>  
 
         <div class="col">
           {{ habit.habitName }}
+        </div>
+        <div class="col">
+          {{ habit.difficulty }}
         </div>
         <div class="col">
           {{ habit.reminderTime | date:'shortTime' }}

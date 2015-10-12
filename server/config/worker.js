@@ -27,6 +27,8 @@ db.on('disconnected', function() {
 var cbInQueue = 0;
 var collectionsQueued = 0;
 
+//add code to calculate new average for past 10 days; if more than 10 days currently stored,
+//shift off the oldest one
 var update = function(err, users) {
   if (err) throw err;
 
@@ -48,6 +50,20 @@ var update = function(err, users) {
       }
     });
 
+
+    if (user.recentStats.length > 89) {
+      user.recentStats.shift();
+    }
+
+    
+    var previousDaysDifficulty = user.recentStats[user.recentStats.length - 1].possiblePointsThisDay;
+    var newDay = {
+      theDate: new Date;
+      difficultyPointsEarned: 0,
+      possiblePointsThisDay : previousDayDifficulty
+    };
+    user.recentStats.push(newDay);
+    user.successPercentage = utils.calculateSuccessPercentage(user.recentStats);
     user.save(function(err) {
       if (err) throw err;
 

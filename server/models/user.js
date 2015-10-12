@@ -30,7 +30,22 @@ var UserSchema = new Schema({
     default: 3
   },
 
-  habits: [HabitSchema]
+  habits: [HabitSchema],
+
+  recentStats: [{
+    theDate: Date,
+    difficultyPointsEarned: Number,
+    possiblePointsThisDay: Number
+  }],
+
+  //percentage of possible diff. points earned 
+  //over past 10 days
+  successPercentage: Number,
+
+  publicOptIn: {
+    type: Boolean,
+    default: true
+  }  
 });
 
 UserSchema.methods.comparePassword = function(password, cb) {

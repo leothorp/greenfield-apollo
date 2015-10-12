@@ -18,6 +18,22 @@ angular.module('app.services', [])
       });
     };
 
+    service.addFakeData = function(username, difficultyPointsEarned, possiblePointsThisDay) {
+      return $http({
+        method: 'POST',
+        url: hostUrl + '/api/users/fakeuserdata',
+        data: { 
+          username: 'aa', 
+          recentStats: [{theDate: new Date(), 
+            difficultyPointsEarned: difficultyPointsEarned,
+            possiblePointsThisDay: possiblePointsThisDay
+        }]}
+      })
+      .then(function(resp) {
+        console.log(resp.data);
+      }); 
+    };
+
     service.addHabit = function(habit) {
       habit.habitName = $sanitize(habit.habitName);
       return $http({
@@ -84,7 +100,6 @@ angular.module('app.services', [])
   function ($http, $location, $window, $auth, $sanitize, hostUrl, $state) {
 
 
-    //var urlPrefix = 'http://192.168.0.7:8080';
     var signin = function (user) {
       console.log(hostUrl);
       user.username = $sanitize(user.username);
