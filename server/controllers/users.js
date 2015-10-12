@@ -1,6 +1,7 @@
 // modules =================================================
 var moment = require('moment');
 var utils = require('../middlewares/utils');
+var User = require('../models/user');
 
 module.exports = {
   showHabits: function(req, res, next) {
@@ -50,7 +51,8 @@ module.exports = {
     var habit = {
       habitName: req.body.habitName,
       reminderTime: req.body.reminderTime,
-      dueTime: req.body.dueTime
+      dueTime: req.body.dueTime,
+      difficulty: req.body.difficulty || 1
     };
 
     if (req.user.habitCount >= req.user.habitLimit) {
@@ -66,10 +68,18 @@ module.exports = {
 
       req.user.habits.push(habit);
       req.user.habitCount++;
+      console.log('before assignment: ',req.user.recentStats);
+      //add this habit's difficulty to the day's total difficulty points
 
+      req.user.recentStats[req.user.recentStats.length - 1].possiblePointsThisDay += habit.difficulty;
+      console.log('after assignment: ',req.user.recentStats);  
+      //update successPercentage
+      req.user.successPercentage = utils.calculateSuccessPercentage(req.user.recentStats); 
       req.user.save(function(err) {
+        console.log(req.user);
         if (err) return next(err);
-
+        console.log('successPercentage: ', req.user.successPercentage);
+        //console.log('after saving: ',req.user.recentStats);   
         console.log('New habit added to user.');
         res.json({message: 'Habit added.'});
       });
@@ -158,10 +168,17 @@ module.exports = {
       req.mw_params.checkin = habit.lastCheckin = Date.now();
       habit.checkinCount++;
       habit.streakRecord = Math.max(habit.streakRecord, habit.streak);
+      
 
+      //change the user's difficulty points earned for today
+      var pointsEarned = habit.difficulty;
+      req.user.recentStats[req.user.recentStats.length - 1].difficultyPointsEarned += pointsEarned;
+      //update success percentage
+      req.user.successPercentage = utils.calculateSuccessPercentage(req.user.recentStats);
       req.user.save(function(err) {
         if (err) return next(err);
-
+        console.log('successPercentage: ', req.user.successPercentage);
+        console.log('user\'s recent stats for today after adding points: ', req.user.recentStats[req.user.recentStats.length - 1]);
         next();
       });
     }
@@ -189,5 +206,21 @@ module.exports = {
 
       res.json({message: 'Habit marked as failed.'});
     });
+  },
+
+  getAllStats: function(req, res, next) {
+    var sendStats = function(err, users) {
+      var userData = [];
+      users.forEach(function(user) {
+        userData.push({
+          username: user.username,
+          recentStats: user.recentStats
+        });    
+      });
+      res.json(userData);
+    };
+
+    User.find({}, sendStats);
+
   }
 };

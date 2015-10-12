@@ -74,7 +74,6 @@ angular.module('app.services', [])
   function ($http, $location, $window, $auth, $sanitize, hostUrl, $state) {
 
 
-    //var urlPrefix = 'http://192.168.0.7:8080';
     var signin = function (user) {
       console.log(hostUrl);
       user.username = $sanitize(user.username);

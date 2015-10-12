@@ -62,5 +62,15 @@ module.exports = {
   pastDueTime: function(habit) {
     return moment().hour() >= moment(habit.dueTime).hour()
       && moment().minute() >= moment(habit.dueTime).minute();
+  },
+
+  calculateSuccessPercentage: function(statsArray) {
+    var totalEarned = 0;
+    var totalPossible = 0;
+    for (var i = 0; i < statsArray.length; i++) {
+      totalEarned += statsArray[i].difficultyPointsEarned;
+      totalPossible += statsArray[i].possiblePointsThisDay;
+    }
+    return Math.floor(totalEarned * 100 / totalPossible);
   }
 };
