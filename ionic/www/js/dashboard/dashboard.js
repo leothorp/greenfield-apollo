@@ -9,11 +9,11 @@ angular.module('app.dashboard', [])
     //10 difficultyPointsEarned, 30 possiblePointsThisDay in each entry
     //parameters:  Habits.addFakeData(username, difficultyPointsEarned, possiblePointsThisDay)
     //
-    // window.addFakeUserData = function() {
-    //   for (var i = 0; i <= 30; i++) {
-    //     Habits.addFakeData('aa', 10, 30);
-    //   }
-    // };
+    window.addFakeUserData = function() {
+      for (var i = 0; i <= 30; i++) {
+        Habits.addFakeData('bb', 10, 30);
+      }
+    };
 
 
     $rootScope.showNav = true;
