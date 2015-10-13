@@ -1,0 +1,20 @@
+<div class="dashboardContainer">
+   <div class="habits info">
+      <div class="row habit">
+        <div class="col">User Name</div> 
+        <div class="col">Avg. Daily Difficulty</div>
+        <div class="col">10 Day Success Rate</div>   
+      </div> 
+      <div class="row habit" ng-repeat="user in allUsers | orderBy: 'successRate(user.recentStats)'"> 
+        <div class="col">
+          {{ user.username }}
+        </div>
+        <div class="col">
+          {{ difficultyPoints(user.recentStats) }}
+        </div>
+        <div class="col">
+          {{ successRate(user.recentStats) + '%' }}
+        </div>
+      </div>  
+    </div>
+  </div>

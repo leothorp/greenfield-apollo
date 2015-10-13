@@ -4,14 +4,15 @@ angular.module('app.dashboard', [])
   function($rootScope, $scope, $location, Habits, Events) {
 
 
+
     // example usage to generate dummy data
     // will append 30 new entries to the recentStats of user 'aa'
     // 10 difficultyPointsEarned, 30 possiblePointsThisDay in each entry
     // parameters:  Habits.addFakeData(username, difficultyPointsEarned, possiblePointsThisDay)
     
-    window.addFakeUserData = function() {
+    window.addFakeUserData = function(username) {
       for (var i = 0; i <= 30; i++) {
-        Habits.addFakeData('aa', 10, 30);
+        Habits.addFakeData(username, 5, 40);
       }
     };
 

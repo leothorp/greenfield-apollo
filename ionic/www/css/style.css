@@ -5,6 +5,7 @@
 
 .col {
   text-align: center;
+  font-size: 11.5px;
 }
 
 .row {
@@ -12,6 +13,10 @@
   margin: auto !important;
 }  
 
+
+.item-complex .item-content, .item{
+    background-color: #E1E4ED !important;
+}
 .create input {
   border: 1px solid #ccc;
   color: #888;

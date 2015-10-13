@@ -6,8 +6,6 @@ catch (err) {}
 module.exports = {
   port: 8080,
   localdb: 'mongodb://127.0.0.1:27017/habitdb',
-  // tokenSecret: process.env.tokenSecret || secret.tokenSecret,
-  // googleSecret: process.env.googleSecret || secret.googleSecret
-  tokenSecret: 'yoursecretkeyhere',
-  googleSecret: 'fHIrD60a6FSjk4IA58EKBZh2'
+  tokenSecret: process.env.tokenSecret || secret.tokenSecret,
+  googleSecret: process.env.googleSecret || secret.googleSecret
 };

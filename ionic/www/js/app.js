@@ -5,6 +5,7 @@ angular.module('app', [
   'app.edit',
   'app.dashboard',
   'app.auth',
+  'app.stats',
   'ngRoute',
   'ngSanitize',
   'gridshore.c3js.chart',
@@ -40,6 +41,11 @@ angular.module('app', [
       .when('/edit', {
         templateUrl: 'js/edit/edit.html',
         controller: 'EditController',
+        authenticate: true
+      })
+      .when('/stats',{
+        templateUrl: 'js/stats/stats.html',
+        controller: 'StatsController',
         authenticate: true
       })
       .otherwise({

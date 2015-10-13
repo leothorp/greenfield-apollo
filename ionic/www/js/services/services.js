@@ -23,7 +23,7 @@ angular.module('app.services', [])
         method: 'POST',
         url: hostUrl + '/api/users/fakeuserdata',
         data: { 
-          username: 'aa', 
+          username: username, 
           recentStats: [{theDate: new Date(), 
             difficultyPointsEarned: difficultyPointsEarned,
             possiblePointsThisDay: possiblePointsThisDay
@@ -42,6 +42,16 @@ angular.module('app.services', [])
         data: habit
       });
     };
+
+    service.getStats = function(){
+      return $http({
+        method: 'GET',
+        url: hostUrl + '/api/users/allstats',
+      })
+      .then(function(resp){
+        return resp.data; 
+      })
+    }
 
     service.setEdit = function(habit) {
       _habit = habit;
