@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
 
-  "name": "Habit Trainer",
+  "name": "Habit Trainer Extension",
   "description": "This extension helps you track your habits and improve yourself",
-  "version": "0",
+  "version": "0.0.2",
 
   "background": {
     "scripts": ["backgroundPage.js"],
@@ -12,10 +12,20 @@
 
   "browser_action": {
     "default_icon": "LetterH.png",
-    "default_title": "Habit Trainer"
+    "default_title": "Habit Trainer",
+    "default_popup": "ht-popup.html"
   },
+
+  "content_scripts": [
+    { "matches" : ["http://habit-trainer.herokuapp.com/*",
+                   "https://habit-trainer.herokuapp.com/*"],
+      "js": ["ht-login.js"],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ],
+
   "permissions": [
     "alarms",
-    "http://localhost:8080/",
     "notifications"]
 }

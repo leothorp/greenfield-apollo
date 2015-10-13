@@ -1,0 +1,13 @@
+{
+  "title": "Habit-Trainer Addon",
+  "name": "ht-firefox-addon",
+  "version": "0.0.1",
+  "description": "Habit-Trainer integration for Firefox browser",
+  "main": "index.js",
+  "author": "jyoko@hrr8-hermes",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT"
+}
