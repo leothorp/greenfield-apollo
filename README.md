@@ -1,12 +1,12 @@
 # greenfield-apollo
 
-> Habit Trainer Web App with Chrome Extension
+> Platform extensions to the habit-trainer app- iOS and Android via Ionic, Firefox extension, and Windows 10.
 
 ## Team
 
-  - __Product Owner__: Igor Stefanco
-  - __Scrum Master__: David Churchill
-  - __Development Team Members__: Erik Hsiao, Sanjay Chakrapani
+  - __Product Owner__: Joe Brumaghim
+  - __Scrum Master__: Leo Thorp
+  - __Development Team Members__: Corey Wolff, James Yokobosky
 
 ## Table of Contents
 
